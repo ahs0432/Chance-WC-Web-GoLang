@@ -1,0 +1,8 @@
+Port: "80"
+DatabaseInfo:
+    Host: 127.0.0.1
+    Port: "3306"
+    Protocol: tcp
+    User: webchecker
+    Password: P@ssW0rd
+    Name: webchecker

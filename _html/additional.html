@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>Chance-WC</title>
+	    <link href="/main.css" type="text/css" rel="stylesheet"> </link>
+	    <style>
+
+	    </style>
+	</head>
+	<body>
+		<header id="main-header">
+			<div class="header-container">
+				<div class="header-flex header-flex-between header-flex-wrap header-flex-middle">
+					<div>
+						<h1 class="text-logo margin-remove">Chance-WC</h1>
+					</div>
+				</div>
+			</div>
+		</header>
+	    <div id="wrap">
+	    	<div class="card monitor-status card-margin-bottom">
+	    		<div class="monitor-status-con">
+	    			<div class="checker-icon-wnorm"></div>
+	    			<div class="text-main text-main-margin">Website Additional mode</div>
+	    		</div>
+	    	</div>
+
+	    	<div>
+	    		<h2 class="text-h2">Additional</h2>
+	    	</div>
+
+	    	<div class="card-table card-margin-bottom">
+				<form id="additionaldata" name="additionaldata" action="/additionaldata" method="post" onsubmit="return isValidSubmit()">
+					<table class="table-size table-center" id="listTable">
+						<tr>
+							<th class="thead-size-nonecursor table-line"><h3 class="text-h3">Name</h3></th>
+							<td class="tbody-size table-line"><input type="text" name="name" placeholder="대상 사이트명 (예: Test)" value="" required minlength="0" maxlength="30" onkeyup="characterCheck(this)" onkeydown="characterCheck(this)"></td>
+						</tr>
+
+						<tr>
+							<th class="thead-size-nonecursor table-line"><h3 class="text-h3">Full URL</h3></th>
+							<td class="tbody-size table-line"><input type="text" name="url" placeholder="대상 URL (예: https://test.com/)" value="https://" required minlength="10" maxlength="500"></td>
+						</tr>
+
+						<tr>
+							<th class="thead-size-nonecursor table-line"><h3 class="text-h3">Contents</h3></th>
+							<td class="tbody-size table-line"><input type="text" name="chkcon" placeholder="검사할 콘텐츠 (예: Test)" value="" required minlength="3" maxlength="100"></td>
+						</tr>
+
+						<tr>
+							<th class="thead-size-nonecursor table-line"><h3 class="text-h3">Recommended</h3></th>
+							<td class="tbody-size table-line"><input type="text" name="recommend" placeholder="권장 처리 방안 (예: Apache 재기동)" value="" minlength="0" maxlength="500"></td>
+						</tr>
+
+						<tr>
+							<th class="thead-size-nonecursor table-line"><h3 class="text-h3">E-Mail</h3></th>
+							<td class="tbody-size table-line">
+								<table id="mailContent" class="mailContent">
+									<tr>
+										<td>
+											<input type="email" name="mail" placeholder="E-Mail (예: test1@test.com)" value="" required minlength="0" maxlength="500">
+											<input type="button" value="+" onclick="mailAppend(this.form)">
+										</td>
+									</tr>
+								</table>
+								
+							</td>
+						</tr>
+
+						<tr>
+							<th class="thead-size-nonecursor table-line"><h3 class="text-h3">TLS Check</h3></th>
+							<td class="tbody-size table-line">
+								<select name="tlscheck" form="additionaldata">
+									<option value="0">TLS 검사 제외</option>
+									<option value="1" selected="selected">TLS 검사 대상</option>
+								</select>
+							</td>
+						</tr>
+
+						<tr>
+							<th class="thead-size-nonecursor table-line"><h3 class="text-h3">Request Check</h3></th>
+							<td class="tbody-size table-line">
+								<select name="statcheck" form="additionaldata">
+									<option value="0">Request 검사 제외</option>
+									<option value="1" selected="selected">Request 검사 대상</option>
+								</select>
+							</td>
+						</tr>
+
+						<tr>
+							<th class="thead-size-nonecursor table-line"><h3 class="text-h3">Timeout</h3></th>
+							<td class="tbody-size table-line"><input type="number" placeholder="10" value="10" name="timeout" required min="0" max="30"></td>
+						</tr>
+
+						<tr>
+							<th class="thead-size-nonecursor"><h3 class="text-h3">Alarm</h3></th>
+							<td class="tbody-size">
+								<select name="alarm" form="additionaldata">
+									<option value="0">검사 대상 제외</option>
+									<option value="1" selected="selected">지속 알람 발생</option>
+									<option value="2">지속 알람 발생 (해소 알람 포함)</option>
+									<option value="3">일회성 알람 발생</option>
+									<option value="4">알람 끄기</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+				</form>
+	    	</div>
+
+	    	<div>
+				<input type="hidden" name="mail[]" form="additionaldata" id="mailList" value="">
+	    		<input class="card-button text-h3" style="font-weight: bold" type="submit" value="적용" onclick="getList()" form="additionaldata"></input>
+	    		<hr class="hr-line"/>
+    			<button class="card-button card-margin-bottom" onClick="location.href='/'"><h3 class="text-h3">취소</h3></button>	
+	    	</div>
+    		
+
+	        <footer class="footer">
+	        	<div class="footer-left">
+	        		
+	        	</div>
+	        	<div class="footer-right">
+	        		Designed by Chance, Made with reference https://uptimerobot.com/
+	        	</div>
+	        </footer>
+	    </div>
+	</body>
+
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="/addFunction.js"></script>
+	<script type="text/javascript" src="/checkContent.js"></script>
+</html>
